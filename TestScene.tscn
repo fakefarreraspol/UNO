@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccblk5av84ba0"]
+[gd_scene load_steps=7 format=3 uid="uid://ccblk5av84ba0"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Hand.gd" id="1_iua7k"]
 [ext_resource type="Script" path="res://Scripts/Game/Deck.gd" id="2_5g0m1"]
 [ext_resource type="Script" path="res://Scripts/Game/GameManager.gd" id="3_j5ky3"]
 [ext_resource type="PackedScene" uid="uid://bwnaufmmb18sm" path="res://UI/EndMenu.tscn" id="4_v1nkc"]
-[ext_resource type="PackedScene" uid="uid://bb5mv20hf2f1s" path="res://UI/PlayerCards.tscn" id="5_ta08k"]
+[ext_resource type="Script" path="res://Scripts/Game/player.gd" id="4_v7pjx"]
+[ext_resource type="Script" path="res://Scripts/Game/AI.gd" id="6_2ctia"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -28,13 +29,13 @@ scale = Vector2(1.5, 1.5)
 metadata/_edit_use_anchors_ = true
 
 [node name="Player" type="Node" parent="."]
+script = ExtResource("4_v7pjx")
 
 [node name="PlayerHand" type="Node" parent="Player"]
 script = ExtResource("1_iua7k")
 
 [node name="AIPlayer" type="Node" parent="."]
+script = ExtResource("6_2ctia")
 
 [node name="AIHand" type="Node" parent="AIPlayer"]
 script = ExtResource("1_iua7k")
-
-[node name="TextureButton" parent="." instance=ExtResource("5_ta08k")]
