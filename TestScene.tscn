@@ -7,9 +7,6 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Node" type="Node" parent="."]
-script = ExtResource("1_iua7k")
-
 [node name="DECK" type="Node" parent="."]
 script = ExtResource("2_5g0m1")
 
@@ -28,3 +25,13 @@ grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(1.5, 1.5)
 metadata/_edit_use_anchors_ = true
+
+[node name="Player" type="Node" parent="."]
+
+[node name="PlayerHand" type="Node" parent="Player"]
+script = ExtResource("1_iua7k")
+
+[node name="AIPlayer" type="Node" parent="."]
+
+[node name="AIHand" type="Node" parent="AIPlayer"]
+script = ExtResource("1_iua7k")

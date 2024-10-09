@@ -3,11 +3,9 @@ extends Node
 var cards = []
 
 func InitializeDeck() -> void:
-	EmptyDeck()
+	EmptyDeck() #Replay
 	GenerateDeck()
 	ShuffleDeck()
-	#for card in cards:
-		#print(card.GetCardDescription())
 
 # Añadir 2 copias de cada carta en la baraja y añadir las cartas especiales
 func GenerateDeck() -> void:
@@ -15,13 +13,16 @@ func GenerateDeck() -> void:
 		
 		if color  == Card.cardColor.NONE: 
 			continue
-		else: print(color)
-		for j in range(2):
-			for i in range(0,10):
+		
+		cards.append(Card.new(color, 0, Card.cardType.NUMBER)) #only one 0 per color
+		for j in range(2): #cartas numericas (2 x numero xc olor)
+			for i in range(1,10):
 				cards.append(Card.new(color, i, Card.cardType.NUMBER))
-				cards.append(Card.new(color, -1, Card.cardType.SKIP))
-				cards.append(Card.new(color, -1, Card.cardType.DRAW_TWO))
-
+			# cartas especiales, 2 x color 
+			# reverse no lo pongo ya que es 1vs1
+			cards.append(Card.new(color, -1, Card.cardType.SKIP))
+			cards.append(Card.new(color, -1, Card.cardType.DRAW_TWO))
+	# Wild Cards
 	for i in range(4):
 		cards.append(Card.new(Card.cardColor.NONE, -1, Card.cardType.WILD))
 		cards.append(Card.new(Card.cardColor.NONE, -1, Card.cardType.WILD_DRAW_FOUR))
