@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bb5mv20hf2f1s"]
+
+[ext_resource type="Script" path="res://Scripts/UI/UICard.gd" id="1_0e2wd"]
+
+[node name="PlayerCard" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_0e2wd")
