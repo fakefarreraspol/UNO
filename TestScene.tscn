@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccblk5av84ba0"]
+
+[ext_resource type="Script" path="res://Scripts/Game/Hand.gd" id="1_iua7k"]
+[ext_resource type="Script" path="res://Scripts/Game/Deck.gd" id="2_5g0m1"]
+[ext_resource type="Script" path="res://Scripts/Game/GameManager.gd" id="3_j5ky3"]
+[ext_resource type="PackedScene" uid="uid://bwnaufmmb18sm" path="res://UI/EndMenu.tscn" id="4_v1nkc"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("1_iua7k")
+
+[node name="DECK" type="Node" parent="."]
+script = ExtResource("2_5g0m1")
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("3_j5ky3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="EndMenu" parent="Camera2D" instance=ExtResource("4_v1nkc")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(1.5, 1.5)
+metadata/_edit_use_anchors_ = true
