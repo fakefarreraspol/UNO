@@ -19,6 +19,7 @@ offset_top = -40.0
 offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
+size_flags_horizontal = 3
 theme_override_constants/separation = -10
 script = ExtResource("1_vqelu")
 
@@ -28,21 +29,10 @@ layout_mode = 2
 [node name="Card2" parent="CanvasLayer/CardContainer" instance=ExtResource("1_bq4i0")]
 layout_mode = 2
 
-[node name="Card4" parent="CanvasLayer/CardContainer" instance=ExtResource("1_bq4i0")]
-layout_mode = 2
-
-[node name="Card5" parent="CanvasLayer/CardContainer" instance=ExtResource("1_bq4i0")]
-layout_mode = 2
-
-[node name="Card6" parent="CanvasLayer/CardContainer" instance=ExtResource("1_bq4i0")]
-layout_mode = 2
-
-[node name="Card3" parent="CanvasLayer/CardContainer" instance=ExtResource("1_bq4i0")]
-layout_mode = 2
-
 [node name="CardPlacement" parent="CanvasLayer" instance=ExtResource("3_womqj")]
 
 [node name="CardHolder" type="Node" parent="."]
 
+[connection signal="child_exiting_tree" from="CanvasLayer/CardContainer" to="CanvasLayer/CardContainer" method="_on_child_exiting_tree"]
 [connection signal="mouse_entered" from="CanvasLayer/CardContainer" to="CanvasLayer/CardContainer" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/CardContainer" to="CanvasLayer/CardContainer" method="_on_mouse_exited"]
