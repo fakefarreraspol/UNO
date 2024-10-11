@@ -22,7 +22,6 @@ func StartGame() -> void:
 		ai_hand.AddCard(deck.Draw())
 		
 	print(str(len(deck.cards)))
-	end_menu.visible = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

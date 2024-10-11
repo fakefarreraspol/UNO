@@ -19,12 +19,12 @@ func GenerateDeck() -> void:
 				cards.append(Card.new(color, i, Card.cardType.NUMBER))
 			# cartas especiales, 2 x color 
 			# reverse no lo pongo ya que es 1vs1
-			cards.append(Card.new(color, -1, Card.cardType.SKIP))
-			cards.append(Card.new(color, -1, Card.cardType.DRAW_TWO))
+			cards.append(Card.new(color, -10, Card.cardType.SKIP))
+			cards.append(Card.new(color, -10, Card.cardType.DRAW_TWO))
 	# Wild Cards
 	for i in range(4):
-		cards.append(Card.new(Card.cardColor.NONE, -1, Card.cardType.WILD))
-		cards.append(Card.new(Card.cardColor.NONE, -1, Card.cardType.WILD_DRAW_FOUR))
+		cards.append(Card.new(Card.cardColor.NONE, -10, Card.cardType.WILD))
+		cards.append(Card.new(Card.cardColor.NONE, -10, Card.cardType.WILD_DRAW_FOUR))
 
 #barajar 
 func ShuffleDeck() -> void:

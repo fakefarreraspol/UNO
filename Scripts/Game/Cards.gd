@@ -1,3 +1,4 @@
+extends Node
 
 class_name Card
 enum cardType { NUMBER, SKIP, DRAW_TWO, WILD, WILD_DRAW_FOUR }
