@@ -14,3 +14,7 @@ config/name="UNO"
 run/main_scene="res://TestScene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameGlobals="*res://Scripts/Game/GameGlobals.gd"

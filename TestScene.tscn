@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccblk5av84ba0"]
+[gd_scene load_steps=8 format=3 uid="uid://ccblk5av84ba0"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Hand.gd" id="1_iua7k"]
 [ext_resource type="Script" path="res://Scripts/Game/Deck.gd" id="2_5g0m1"]
@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bwnaufmmb18sm" path="res://UI/EndMenu.tscn" id="4_v1nkc"]
 [ext_resource type="Script" path="res://Scripts/Game/player.gd" id="4_v7pjx"]
 [ext_resource type="Script" path="res://Scripts/Game/AI.gd" id="6_2ctia"]
+[ext_resource type="PackedScene" uid="uid://bqhedp23c4d8m" path="res://UI/Board.tscn" id="7_525pa"]
 
-[node name="Node2D" type="Node2D"]
+[node name="UNO" type="Node2D"]
 
 [node name="DECK" type="Node" parent="."]
 script = ExtResource("2_5g0m1")
@@ -39,3 +40,5 @@ script = ExtResource("6_2ctia")
 
 [node name="AIHand" type="Node" parent="AIPlayer"]
 script = ExtResource("1_iua7k")
+
+[node name="Board" parent="." instance=ExtResource("7_525pa")]

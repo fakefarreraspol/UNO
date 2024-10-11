@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bva3avyid6pdi"]
+
+[ext_resource type="Texture2D" uid="uid://cbmicidhfxdps" path="res://Sprites/UNOCards.png" id="2_c2oye"]
+
+[node name="Card" type="Container"]
+z_index = -1
+z_as_relative = false
+custom_minimum_size = Vector2(73, 114)
+
+[node name="CardFront" type="Sprite2D" parent="."]
+z_index = -3
+position = Vector2(41, 60)
+texture = ExtResource("2_c2oye")
+hframes = 13
+vframes = 5

@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://dulcayxu8cqoj"]
+
+[ext_resource type="Script" path="res://Scripts/UI/UICard.gd" id="1_n383g"]
+[ext_resource type="Texture2D" uid="uid://cbmicidhfxdps" path="res://Sprites/UNOCards.png" id="1_siv6w"]
+
+[sub_resource type="Animation" id="Animation_yi4mk"]
+resource_name = "Deselect"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardFront:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(37, 8), Vector2(37, 57)]
+}
+
+[sub_resource type="Animation" id="Animation_7vko7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardFront:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(37, 57)]
+}
+
+[sub_resource type="Animation" id="Animation_mout7"]
+resource_name = "Select"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardFront:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(37, 57), Vector2(37, 8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fb2o4"]
+_data = {
+"Deselect": SubResource("Animation_yi4mk"),
+"RESET": SubResource("Animation_7vko7"),
+"Select": SubResource("Animation_mout7")
+}
+
+[node name="Card" type="Container"]
+custom_minimum_size = Vector2(73, 114)
+script = ExtResource("1_n383g")
+
+[node name="CardFront" type="Sprite2D" parent="."]
+position = Vector2(37, 57)
+texture = ExtResource("1_siv6w")
+hframes = 13
+vframes = 5
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fb2o4")
+}
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

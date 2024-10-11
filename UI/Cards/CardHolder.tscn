@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://r1trjlgn5iv8"]
+
+[ext_resource type="Script" path="res://Scripts/UI/card_holder.gd" id="1_0wo23"]
+[ext_resource type="Texture2D" uid="uid://cbmicidhfxdps" path="res://Sprites/UNOCards.png" id="2_sa881"]
+
+[node name="Card" type="Container"]
+z_index = 1
+z_as_relative = false
+custom_minimum_size = Vector2(73, 114)
+script = ExtResource("1_0wo23")
+
+[node name="CardFront" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(40, 59)
+texture = ExtResource("2_sa881")
+hframes = 13
+vframes = 5
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
