@@ -8,10 +8,9 @@ extends Node
 @onready var ai_player: Node = $"../AIPlayer"
 @onready var ai_hand = $"../AIPlayer/AIHand"
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	StartGame()
-
+	
 func StartGame() -> void:
 	deck.InitializeDeck() #create deck
 	ai_hand.ClearAllCards() #Replay

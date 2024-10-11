@@ -10,7 +10,6 @@ func InitializeDeck() -> void:
 # Añadir 2 copias de cada carta en la baraja y añadir las cartas especiales
 func GenerateDeck() -> void:
 	for color in Card.cardColor.values():
-		
 		if color  == Card.cardColor.NONE: 
 			continue
 		
@@ -36,6 +35,7 @@ func ShuffleDeck() -> void:
 func Draw() -> Card:
 	if cards.size() > 0:
 		return cards.pop_back()
+	print("CardNull")
 	return null
 
 func EmptyDeck() -> void:

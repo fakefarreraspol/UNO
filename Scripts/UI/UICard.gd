@@ -38,36 +38,39 @@ func GetCardSize() -> Vector2:
 # 10 (0-9) +2 Reverse Skip
 func InitCard(card: Card) -> void:
 	var calculatedIndex : int
-	if card.card_type == card.cardType.NUMBER:
-		if card.card_color == card.cardColor.RED:
+	if card == null:
+		print("ERROR: 'card' is null in InitCard")
+		return
+	if card.card_type == Card.cardType.NUMBER:
+		if card.card_color == Card.cardColor.RED:
 			calculatedIndex = card.cardNumber
-		elif card.card_color == card.cardColor.GREEN:
+		elif card.card_color == Card.cardColor.GREEN:
 			calculatedIndex = card.cardNumber + 13
-		elif card.card_color == card.cardColor.BLUE:
+		elif card.card_color == Card.cardColor.BLUE:
 			calculatedIndex = card.cardNumber + 26 
-		elif card.card_color == card.cardColor.YELLOW:
+		elif card.card_color == Card.cardColor.YELLOW:
 			calculatedIndex = card.cardNumber + 39 
-	elif card.card_type == card.cardType.SKIP:
-		if card.card_color == card.cardColor.RED:
+	elif card.card_type == Card.cardType.SKIP:
+		if card.card_color == Card.cardColor.RED:
 			calculatedIndex = 13
-		elif card.card_color == card.cardColor.GREEN:
+		elif card.card_color == Card.cardColor.GREEN:
 			calculatedIndex = 26
-		elif card.card_color == card.cardColor.BLUE:
+		elif card.card_color == Card.cardColor.BLUE:
 			calculatedIndex = 39
-		elif card.card_color == card.cardColor.YELLOW:
+		elif card.card_color == Card.cardColor.YELLOW:
 			calculatedIndex = 52
-	elif card.card_type == card.cardType.DRAW_TWO:
-		if card.card_color == card.cardColor.RED:
+	elif card.card_type == Card.cardType.DRAW_TWO:
+		if card.card_color == Card.cardColor.RED:
 			calculatedIndex = 11
 		elif card.card_color == card.cardColor.GREEN:
 			calculatedIndex = 24
-		elif card.card_color == card.cardColor.BLUE:
+		elif card.card_color == Card.cardColor.BLUE:
 			calculatedIndex = 37
-		elif card.card_color == card.cardColor.YELLOW:
+		elif card.card_color == Card.cardColor.YELLOW:
 			calculatedIndex = 49
-	elif card.card_type == card.cardType.WILD:
+	elif card.card_type == Card.cardType.WILD:
 		calculatedIndex = 53
-	elif card.card_type == card.cardType.WILD_DRAW_FOUR:
+	elif card.card_type == Card.cardType.WILD_DRAW_FOUR:
 		calculatedIndex = 58
 		
 	update_sprite(calculatedIndex)
@@ -89,6 +92,7 @@ func _on_gui_input(event: InputEvent) -> void:
 			#press down
 			if cardHighlighted:
 				var cardTemp = card.instantiate()
+				cardTemp.update_sprite($CardFront.frame)
 				get_tree().get_root().get_node("UNO/Board/CardHolder").add_child(cardTemp)
 				GameGlobals.CardSelected = true
 				self.get_child(0).hide()
@@ -101,7 +105,7 @@ func _on_gui_input(event: InputEvent) -> void:
 			else:
 				#place card on board
 				self.queue_free()
-				get_node("../../CardPlacement").PlaceCard(get_global_mouse_position())
+				get_node("../../CardPlacement").PlaceCard(get_global_mouse_position(), $CardFront.frame)
 				
 			for i in get_tree().get_root().get_node("UNO/Board/CardHolder").get_child_count():
 				#only if cards are the same

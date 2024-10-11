@@ -1,6 +1,6 @@
 extends HBoxContainer
 
-
+const CARD = preload("res://UI/Cards/Card.tscn")
 var startPosition
 
 func _ready() -> void:
@@ -16,7 +16,13 @@ func _on_mouse_entered() -> void:
 	tween.tween_property(self, "position", targetPos, 0.2)
 	tween2.tween_property(self, "scale", Vector2(1.3,1.3), 0.2)
 
-
+func AddCard(card : Card):
+	if card == null:
+		print("ERROR: 'card' is null in AddCard")
+		return
+	var cardInstance = CARD.instantiate()
+	add_child(cardInstance)
+	cardInstance.InitCard(card)
 
 func _on_mouse_exited() -> void:
 	if !GameGlobals.CardSelected:
