@@ -2,6 +2,8 @@ extends Node
 
 @onready var deck = $"../DECK"
 @onready var end_menu: Control = $"../Camera2D/EndMenu"
+@onready var choose_color: Control = $"../Camera2D/ChooseColor"
+
 
 @onready var player: Node = $"../Player"
 @onready var player_hand = $"../Player/PlayerHand"
@@ -26,3 +28,4 @@ func StartGame() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_right"): end_menu.HideMenu()
+	if Input.is_action_just_pressed("ui_left"): choose_color.HideChooseColor()

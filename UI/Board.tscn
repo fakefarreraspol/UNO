@@ -9,18 +9,15 @@
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="CardContainer" type="HBoxContainer" parent="CanvasLayer"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+layout_direction = 1
+anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
-grow_horizontal = 2
-grow_vertical = 0
+offset_right = 136.0
+grow_vertical = 2
 size_flags_horizontal = 3
+size_flags_vertical = 8
 theme_override_constants/separation = -10
+alignment = 1
 script = ExtResource("1_vqelu")
 
 [node name="Card" parent="CanvasLayer/CardContainer" instance=ExtResource("1_bq4i0")]

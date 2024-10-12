@@ -20,4 +20,4 @@ func _ready() -> void:
 
 
 func GetCardDescription() -> String:
-	return str(card_color) + " " + str(cardNumber) + " " + str(card_type) 
+	return str("CARD ") + str(card_color) + " " + str(cardNumber) + " " + str(card_type) 

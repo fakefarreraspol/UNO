@@ -42,16 +42,16 @@ func InitCard(card: Card) -> void:
 		return
 	if card.card_type == Card.cardType.NUMBER:
 		if card.card_color == Card.cardColor.RED:
-			if(card.cardNumber == 0): calculatedIndex = 10
+			if(card.cardNumber == 0): calculatedIndex = 10 - 1
 			else: calculatedIndex = card.cardNumber - 1
 		elif card.card_color == Card.cardColor.GREEN:
-			if(card.cardNumber == 0): calculatedIndex = 23
+			if(card.cardNumber == 0): calculatedIndex = 23 - 1
 			else: calculatedIndex = card.cardNumber + 13 - 1
 		elif card.card_color == Card.cardColor.BLUE:
-			if(card.cardNumber == 0): calculatedIndex = 36
+			if(card.cardNumber == 0): calculatedIndex = 36 - 1
 			else: calculatedIndex = card.cardNumber + 26 - 1
 		elif card.card_color == Card.cardColor.YELLOW:
-			if(card.cardNumber == 0): calculatedIndex = 39
+			if(card.cardNumber == 0): calculatedIndex = 49 -1
 			else: calculatedIndex = card.cardNumber + 39 - 1
 	elif card.card_type == Card.cardType.SKIP:
 		if card.card_color == Card.cardColor.RED:
