@@ -10,9 +10,13 @@ extends Node
 @onready var ai_player: Node = $"../AIPlayer"
 @onready var ai_hand = $"../AIPlayer/AIHand"
 
+var PlayerTurn = true #false if is AI turn
+
 func _ready() -> void:
 	StartGame()
-	
+	choose_color.color_changed.connect(Callable(ChangeLastColorCard).bind())
+	GameGlobals.last_card_changed.connect(Callable(TriggerSpecialCards))
+
 func StartGame() -> void:
 	deck.InitializeDeck() #create deck
 	ai_hand.ClearAllCards() #Replay
@@ -29,3 +33,27 @@ func StartGame() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_right"): end_menu.HideMenu()
 	if Input.is_action_just_pressed("ui_left"): choose_color.HideChooseColor()
+	
+	
+func ChangeLastColorCard( color : Card.cardColor) -> void:
+	print("Color Changed")
+	GameGlobals.lastCardPlayed.card_color = color
+	
+func TriggerSpecialCards():
+	if(PlayerTurn):
+		if(GameGlobals.lastCardPlayed.card_type == Card.cardType.WILD) or (GameGlobals.lastCardPlayed.card_type == Card.cardType.WILD_DRAW_FOUR):
+			choose_color.HideChooseColor()
+		if(GameGlobals.lastCardPlayed.card_type == Card.cardType.WILD_DRAW_FOUR):
+			for i in range(4):
+				ai_hand.AddCard(deck.Draw())
+		if(GameGlobals.lastCardPlayed.card_type == Card.cardType.DRAW_TWO):
+			for i in range(2):
+				ai_hand.AddCard(deck.Draw())
+	else:
+		if(GameGlobals.lastCardPlayed.card_type == Card.cardType.WILD_DRAW_FOUR):
+			for i in range(4):
+				player_hand.AddCard(deck.Draw())
+		if(GameGlobals.lastCardPlayed.card_type == Card.cardType.DRAW_TWO):
+			for i in range(2):
+				player_hand.AddCard(deck.Draw())
+		

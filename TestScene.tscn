@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccblk5av84ba0"]
+[gd_scene load_steps=11 format=3 uid="uid://ccblk5av84ba0"]
 
 [ext_resource type="Script" path="res://Scripts/Game/Hand.gd" id="1_iua7k"]
 [ext_resource type="Script" path="res://Scripts/Game/Deck.gd" id="2_5g0m1"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ugo7esglev50" path="res://UI/Cards/ChooseColor.tscn" id="4_mrmgc"]
 [ext_resource type="PackedScene" uid="uid://bwnaufmmb18sm" path="res://UI/EndMenu.tscn" id="4_v1nkc"]
 [ext_resource type="Script" path="res://Scripts/Game/player.gd" id="4_v7pjx"]
+[ext_resource type="PackedScene" uid="uid://bffbajirepksy" path="res://UI/StartMenu.tscn" id="5_wh6c1"]
 [ext_resource type="Script" path="res://Scripts/Game/AI.gd" id="6_2ctia"]
 [ext_resource type="PackedScene" uid="uid://bqhedp23c4d8m" path="res://UI/Board.tscn" id="7_525pa"]
 [ext_resource type="Texture2D" uid="uid://dov84c35app6p" path="res://Sprites/bg.jpg" id="8_kvs75"]
@@ -32,6 +33,8 @@ scale = Vector2(1.5, 1.5)
 metadata/_edit_use_anchors_ = true
 
 [node name="ChooseColor" parent="Camera2D" instance=ExtResource("4_mrmgc")]
+
+[node name="StartMenu" parent="Camera2D" instance=ExtResource("5_wh6c1")]
 
 [node name="Player" type="Node" parent="."]
 script = ExtResource("4_v7pjx")

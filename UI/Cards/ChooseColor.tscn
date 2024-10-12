@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://ugo7esglev50"]
+[gd_scene load_steps=8 format=3 uid="uid://ugo7esglev50"]
 
 [ext_resource type="Script" path="res://Scripts/UI/choose_color.gd" id="1_64yu5"]
 [ext_resource type="Texture2D" uid="uid://dltv6va6j5877" path="res://Sprites/YELLOW.png" id="2_jmnfb"]
 [ext_resource type="Texture2D" uid="uid://dp6uhvybmriji" path="res://Sprites/BLUE.png" id="3_1y4th"]
 [ext_resource type="Texture2D" uid="uid://bxdsx5sckdbk4" path="res://Sprites/RED.png" id="4_f2kja"]
 [ext_resource type="Texture2D" uid="uid://bwljrnfs4whn5" path="res://Sprites/GREEN.png" id="5_qu1le"]
+[ext_resource type="Shader" path="res://UI/pause_bg.gdshader" id="6_ur4lj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i86e5"]
+shader = ExtResource("6_ur4lj")
+shader_parameter/amount = 2.0
 
 [node name="ChooseColor" type="Control"]
 layout_mode = 3
@@ -16,41 +21,53 @@ grow_vertical = 2
 script = ExtResource("1_64yu5")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_i86e5")
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/MarginContainer"]
-layout_mode = 2
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -42.0
+offset_right = 42.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
 columns = 2
 
-[node name="YellowButton" type="TextureButton" parent="CanvasLayer/MarginContainer/GridContainer"]
+[node name="YellowButton" type="TextureButton" parent="CanvasLayer/GridContainer"]
 layout_mode = 2
 texture_normal = ExtResource("2_jmnfb")
 
-[node name="BlueButton" type="TextureButton" parent="CanvasLayer/MarginContainer/GridContainer"]
+[node name="BlueButton" type="TextureButton" parent="CanvasLayer/GridContainer"]
 layout_mode = 2
 texture_normal = ExtResource("3_1y4th")
 
-[node name="RedButton" type="TextureButton" parent="CanvasLayer/MarginContainer/GridContainer"]
+[node name="RedButton" type="TextureButton" parent="CanvasLayer/GridContainer"]
 layout_mode = 2
 texture_normal = ExtResource("4_f2kja")
 
-[node name="GreenButton" type="TextureButton" parent="CanvasLayer/MarginContainer/GridContainer"]
+[node name="GreenButton" type="TextureButton" parent="CanvasLayer/GridContainer"]
 layout_mode = 2
 texture_normal = ExtResource("5_qu1le")
 
-[connection signal="pressed" from="CanvasLayer/MarginContainer/GridContainer/YellowButton" to="." method="_on_yellow_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/GridContainer/BlueButton" to="." method="_on_blue_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/GridContainer/RedButton" to="." method="_on_red_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/GridContainer/GreenButton" to="." method="_on_green_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GridContainer/YellowButton" to="." method="_on_yellow_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GridContainer/BlueButton" to="." method="_on_blue_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GridContainer/RedButton" to="." method="_on_red_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GridContainer/GreenButton" to="." method="_on_green_button_pressed"]

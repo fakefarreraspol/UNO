@@ -20,7 +20,7 @@ func PlaceCard(position : Vector2, index : int, card : Card):
 	add_child(cardTemp)
 	
 	
-	GameGlobals.lastCardPlayed = card
+	GameGlobals.SetLastCard(card)
 	
 	print(GameGlobals.lastCardPlayed)
 	

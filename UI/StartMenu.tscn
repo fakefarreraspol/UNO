@@ -1,20 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwnaufmmb18sm"]
+[gd_scene load_steps=4 format=3 uid="uid://bffbajirepksy"]
 
-[ext_resource type="Script" path="res://Scripts/UI/end_menu.gd" id="1_bk0t6"]
-[ext_resource type="Shader" path="res://UI/pause_bg.gdshader" id="2_5f485"]
+[ext_resource type="Script" path="res://Scripts/UI/end_menu.gd" id="1_5xjdx"]
+[ext_resource type="Shader" path="res://UI/pause_bg.gdshader" id="2_vxqja"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_da4jd"]
-shader = ExtResource("2_5f485")
+shader = ExtResource("2_vxqja")
 shader_parameter/amount = 2.0
 
-[node name="EndMenu" type="Control"]
+[node name="StartMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_bk0t6")
+script = ExtResource("1_5xjdx")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 5
@@ -44,10 +44,11 @@ layout_mode = 2
 
 [node name="PlayAgain" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "PLAY AGAIN"
+text = "START GAME"
 
 [node name="QuitGame" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "QUIT GAME"
 
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/PlayAgain" to="." method="_on_play_again_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/QuitGame" to="." method="_on_quit_game_pressed"]

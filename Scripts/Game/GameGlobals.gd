@@ -1,11 +1,16 @@
 extends Node
 
-
+signal last_card_changed()
 var CardSelected
 var mouseOnPlacement = false
 
 var playerTurn = true
 var lastCardPlayed : Card
+
+func SetLastCard(card : Card) -> void:
+	lastCardPlayed = card
+	print("Card on Board changed!")
+	emit_signal("last_card_changed")
 
 func _CheckCardsCompatibility(card : Card) -> bool:
 	if(lastCardPlayed != null):
@@ -20,5 +25,4 @@ func _CheckCardsCompatibility(card : Card) -> bool:
 		print("Same type")
 		if(card.card_type == lastCardPlayed.card_type): return true
 	
-
 	return false
