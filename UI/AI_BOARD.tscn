@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://d2sfc4oguve0"]
+
+[node name="Board" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CardContainer" type="HBoxContainer" parent="CanvasLayer"]
+layout_direction = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 136.0
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_constants/separation = -10
+alignment = 1
+
+[node name="CardHolder" type="Node" parent="."]

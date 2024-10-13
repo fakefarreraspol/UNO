@@ -23,4 +23,6 @@ func PlaceCard(position : Vector2, index : int, card : Card):
 	GameGlobals.SetLastCard(card)
 	
 	print(GameGlobals.lastCardPlayed)
-	
+
+func DestroyCard() -> void:
+	queue_free()

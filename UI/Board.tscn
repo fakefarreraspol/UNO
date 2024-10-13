@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqhedp23c4d8m"]
+[gd_scene load_steps=4 format=3 uid="uid://bqhedp23c4d8m"]
 
 [ext_resource type="Script" path="res://Scripts/UI/card_container.gd" id="1_vqelu"]
+[ext_resource type="Script" path="res://Scripts/UI/AI/AI_CardContainer.gd" id="3_o8kkm"]
 [ext_resource type="PackedScene" uid="uid://137bv7bcim87" path="res://UI/Cards/card_placement.tscn" id="3_womqj"]
 
 [node name="Board" type="Node"]
@@ -13,13 +14,22 @@ anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 136.0
 grow_vertical = 2
-size_flags_horizontal = 3
 size_flags_vertical = 8
 theme_override_constants/separation = -10
 alignment = 1
 script = ExtResource("1_vqelu")
 
 [node name="CardPlacement" parent="CanvasLayer" instance=ExtResource("3_womqj")]
+
+[node name="AICardContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 114.0
+grow_horizontal = 2
+scale = Vector2(0.9, 0.9)
+theme_override_constants/separation = -15
+alignment = 1
+script = ExtResource("3_o8kkm")
 
 [node name="CardHolder" type="Node" parent="."]
 

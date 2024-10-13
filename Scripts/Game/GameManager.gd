@@ -73,3 +73,4 @@ func PlayerDrawsCard() -> void:
 func EndTurn() -> void:
 	PlayerTurn = not PlayerTurn
 	GameGlobals.playerTurn = not GameGlobals.playerTurn
+	ai_player.TurnChanged()

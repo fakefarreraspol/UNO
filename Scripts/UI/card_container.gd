@@ -39,7 +39,6 @@ func _on_mouse_exited() -> void:
 
 
 func _on_child_exiting_tree(node: Node) -> void:
-	print("XD")
 	pass
 
 func UpdatePivot() -> void:
