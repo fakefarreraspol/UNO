@@ -29,7 +29,7 @@ func StartGame() -> void:
 	player_hand.ClearAllCards() #Replay
 	
 	print(str(len(deck.cards)))
-	for i in range(2): 
+	for i in range(7): 
 		player_hand.AddCard(deck.Draw())
 		ai_hand.AddCard(deck.Draw())
 		
@@ -50,16 +50,14 @@ func ProcessCards(card : Card):
 		player_hand.RemoveCard(card)
 		if len(player_hand.handCards) == 1 :
 			unoButtonPressed = false
-			uno_button.HideUNOButton()
+			uno_button.ShowUNOButton()
 			await get_tree().create_timer(2).timeout
 			if(!unoButtonPressed): 
 				for i in range(4):
 					player_hand.AddCard(deck.Draw())
 			uno_button.HideUNOButton()
-			TriggerSpecialCards(card)
-		else: TriggerSpecialCards(card)
-
-	else: TriggerSpecialCards(card)
+	
+	TriggerSpecialCards(card)
 
 
 func TriggerSpecialCards(card : Card):

@@ -4,7 +4,7 @@ extends Node
 var AI_CardUI
 signal ai_draw_card()
 
-var cardToPlay = Card
+var cardToPlay : Card
 
 func TurnChanged() -> void:
 	if(!GameGlobals.playerTurn):
@@ -38,11 +38,17 @@ func OnCardAdded(card: Card) -> void:
 func DecideNextMovement() -> bool:
 	cardToPlay = null
 	for card in ai_hand.handCards:
+		print(card.GetCardDescription())
 		if(GameGlobals._CheckCardsCompatibility(card)):
 			cardToPlay = card
+			SetWildCard()
 			return true
 	if cardToPlay == null: 
 		emit_signal("ai_draw_card")
-	
-	
 	return false
+
+func SetWildCard() -> void:
+	var color = randi_range(0,3)
+	if(cardToPlay.card_color == Card.cardColor.NONE):
+		cardToPlay.card_color = Card.cardColor.values()[color]
+	

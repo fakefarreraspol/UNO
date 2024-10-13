@@ -8,8 +8,10 @@ func _ready() -> void:
 
 
 func HideUNOButton() -> void:
-	if($CanvasLayer.visible): $CanvasLayer.hide()
-	else: $CanvasLayer.show()
+	$CanvasLayer.hide()
+
+func ShowUNOButton() -> void:
+	$CanvasLayer.show()
 
 func _on_container_mouse_entered() -> void:
 	$CanvasLayer.get_child(0).get_child(1).play("Select")
