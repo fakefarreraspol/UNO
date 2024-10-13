@@ -56,7 +56,7 @@ func ProcessCards(card : Card):
 				for i in range(4):
 					player_hand.AddCard(deck.Draw())
 			uno_button.HideUNOButton()
-	
+	CheckEndGame()
 	TriggerSpecialCards(card)
 
 
@@ -100,3 +100,18 @@ func EndTurn(change) -> void:
 
 func OnUNOButtonPressed() -> void:
 	unoButtonPressed = true
+
+func CheckEndGame() -> void:
+	if (len(player_hand.handCards) == 0): 
+		GameGlobals.PlayerWon = "YOU WIN!"
+		end_menu.HideMenu()
+	
+	if(len(ai_hand.handCards) == 0):
+		GameGlobals.PlayerWon = "YOU LOSE!"
+		end_menu.HideMenu()
+
+
+func RestartGame() -> void:
+	ai_player.RemoveUICards()
+	player.RemoveUICards()
+	StartGame()

@@ -52,3 +52,6 @@ func SetWildCard() -> void:
 	if(cardToPlay.card_color == Card.cardColor.NONE):
 		cardToPlay.card_color = Card.cardColor.values()[color]
 	
+
+func RemoveUICards() -> void:
+	AI_CardUI.RemoveAllUICards()

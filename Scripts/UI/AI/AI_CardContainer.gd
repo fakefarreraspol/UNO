@@ -83,3 +83,10 @@ func GetCardIndex(card: Card) -> int:
 		calculatedIndex = 58 -1
 	
 	return calculatedIndex
+
+
+
+func RemoveAllUICards() -> void:
+	for child in get_children():
+		child.queue_free()
+	get_node("../CardPlacement").DestroyCard()

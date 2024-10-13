@@ -7,6 +7,7 @@ var mouseOnPlacement = false
 var playerTurn = true
 var lastCardPlayed : Card
 
+var PlayerWon = "No"
 func SetLastCard(card : Card) -> void:
 	lastCardPlayed = card
 	print("Card on Board changed!" + card.GetCardDescription())

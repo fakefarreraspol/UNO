@@ -25,4 +25,6 @@ func PlaceCard(position : Vector2, index : int, card : Card):
 	print(GameGlobals.lastCardPlayed)
 
 func DestroyCard() -> void:
-	queue_free()
+	print("Removing Cards in board")
+	for child in get_children():
+		child.queue_free()

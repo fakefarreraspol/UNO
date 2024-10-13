@@ -43,3 +43,8 @@ func _on_child_exiting_tree(node: Node) -> void:
 
 func UpdatePivot() -> void:
 	self.pivot_offset.x = maxCardsAllowed * 37
+	
+
+func RemoveAllUICards() -> void:
+	for child in get_children():
+		child.queue_free()

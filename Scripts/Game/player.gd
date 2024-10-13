@@ -19,3 +19,6 @@ func OnCardAdded(card: Card) -> void:
 		print("ERROR: 'card' is null in OnCardAdded")
 		return
 	CardUI.AddCard(card)
+
+func RemoveUICards() -> void:
+	CardUI.RemoveAllUICards()
