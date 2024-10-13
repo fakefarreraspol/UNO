@@ -38,12 +38,13 @@ func StartGame() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_right"): end_menu.HideMenu()
-	if Input.is_action_just_pressed("ui_left"): choose_color.HideChooseColor()
+	if Input.is_action_just_pressed("ui_left"): print("AI cards LEFT "+ str(len(ai_hand.handCards)))
 	
 	
 func ChangeLastColorCard( color : Card.cardColor) -> void:
 	print("Color Changed")
 	GameGlobals.lastCardPlayed.card_color = color
+	get_tree().get_root().get_node("UNO/Colors").PlaySound(color)
 
 func ProcessCards(card : Card):
 	if(PlayerTurn):
@@ -105,7 +106,7 @@ func CheckEndGame() -> void:
 	if (len(player_hand.handCards) == 0): 
 		GameGlobals.PlayerWon = "YOU WIN!"
 		end_menu.HideMenu()
-	
+	print("AI cards LEFT "+ str(len(ai_hand.handCards)))
 	if(len(ai_hand.handCards) == 0):
 		GameGlobals.PlayerWon = "YOU LOSE!"
 		end_menu.HideMenu()

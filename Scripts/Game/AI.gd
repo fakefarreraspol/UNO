@@ -19,8 +19,10 @@ func TurnChanged() -> void:
 		if cardToPlay == null: 
 			print("Ai card is null")
 			return
-		AI_CardUI.PlaceCard(cardToPlay)
+		
 		ai_hand.RemoveCard(cardToPlay)
+		AI_CardUI.PlaceCard(cardToPlay)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -51,6 +53,7 @@ func SetWildCard() -> void:
 	var color = randi_range(0,3)
 	if(cardToPlay.card_color == Card.cardColor.NONE):
 		cardToPlay.card_color = Card.cardColor.values()[color]
+		get_tree().get_root().get_node("UNO/Colors").PlaySound(cardToPlay.card_color)
 	
 
 func RemoveUICards() -> void:

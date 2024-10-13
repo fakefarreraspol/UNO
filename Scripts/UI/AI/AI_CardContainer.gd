@@ -33,10 +33,14 @@ func SelectCard() -> void:
 
 func PlaceCard(card : Card) -> void:
 	var cardSpriteIndex = GetCardIndex(card)
-	if(cardSpriteIndex<0) : return
+	if(cardSpriteIndex < 0) : 
+		print("CARD IS NULL")
+		return
 	var projResH = ProjectSettings.get_setting("display/window/size/viewport_height")
 	var projResW = ProjectSettings.get_setting("display/window/size/viewport_width")
+	
 	get_node("../CardPlacement").PlaceCard(Vector2(projResW/2, projResH/2), cardSpriteIndex, card)
+	print("CARD PLACED!!!!")
 	cardSelected.DeleteCard()
 
 

@@ -17,6 +17,7 @@ func AddCard(card: Card) -> void:
 
 
 func RemoveCard(card: Card) -> void:
+	print(card.GetCardDescription())
 	handCards.erase(card)
 	print(" Cards Left: " + str(len(handCards))) 
 
