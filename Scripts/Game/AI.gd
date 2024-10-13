@@ -16,6 +16,9 @@ func TurnChanged() -> void:
 		else:
 			AI_CardUI.SelectCard()
 			await get_tree().create_timer(0.5).timeout
+		if cardToPlay == null: 
+			print("Ai card is null")
+			return
 		AI_CardUI.PlaceCard(cardToPlay)
 		ai_hand.RemoveCard(cardToPlay)
 
@@ -26,7 +29,7 @@ func _ready() -> void:
 
 
 func OnCardAdded(card: Card) -> void:
-	print("Player draws a Card")
+	print("AI draws a Card")
 	if card == null:
 		print("ERROR: 'card' is null in OnCardAdded")
 		return
@@ -38,7 +41,8 @@ func DecideNextMovement() -> bool:
 		if(GameGlobals._CheckCardsCompatibility(card)):
 			cardToPlay = card
 			return true
-	if cardToPlay == null: emit_signal("ai_draw_card")
+	if cardToPlay == null: 
+		emit_signal("ai_draw_card")
 	
 	
 	return false

@@ -4,6 +4,7 @@ extends Node
 @onready var end_menu: Control = $"../Camera2D/EndMenu"
 @onready var choose_color: Control = $"../Camera2D/ChooseColor"
 @onready var draw_card: Control = $"../Camera2D/DrawCard"
+@onready var uno_button: Control = $"../Camera2D/UnoButton"
 
 
 @onready var player: Node = $"../Player"
@@ -12,13 +13,15 @@ extends Node
 @onready var ai_hand = $"../AIPlayer/AIHand"
 
 var PlayerTurn = true #false if is AI turn
+var unoButtonPressed = false
 
 func _ready() -> void:
 	StartGame()
 	choose_color.color_changed.connect(Callable(ChangeLastColorCard).bind())
-	GameGlobals.last_card_changed.connect(Callable(TriggerSpecialCards).bind())
+	GameGlobals.last_card_changed.connect(Callable(ProcessCards).bind())
 	draw_card.card_drawn.connect(Callable(PlayerDrawsCard))
 	ai_player.ai_draw_card.connect(Callable(AIDrawsCard))
+	uno_button.button_pressed.connect(Callable(OnUNOButtonPressed))
 
 func StartGame() -> void:
 	deck.InitializeDeck() #create deck
@@ -26,7 +29,7 @@ func StartGame() -> void:
 	player_hand.ClearAllCards() #Replay
 	
 	print(str(len(deck.cards)))
-	for i in range(7): 
+	for i in range(2): 
 		player_hand.AddCard(deck.Draw())
 		ai_hand.AddCard(deck.Draw())
 		
@@ -41,7 +44,24 @@ func _process(delta: float) -> void:
 func ChangeLastColorCard( color : Card.cardColor) -> void:
 	print("Color Changed")
 	GameGlobals.lastCardPlayed.card_color = color
-	
+
+func ProcessCards(card : Card):
+	if(PlayerTurn):
+		player_hand.RemoveCard(card)
+		if len(player_hand.handCards) == 1 :
+			unoButtonPressed = false
+			uno_button.HideUNOButton()
+			await get_tree().create_timer(2).timeout
+			if(!unoButtonPressed): 
+				for i in range(4):
+					player_hand.AddCard(deck.Draw())
+			uno_button.HideUNOButton()
+			TriggerSpecialCards(card)
+		else: TriggerSpecialCards(card)
+
+	else: TriggerSpecialCards(card)
+
+
 func TriggerSpecialCards(card : Card):
 	if(PlayerTurn):
 		if(GameGlobals.lastCardPlayed.card_type == Card.cardType.WILD) or (GameGlobals.lastCardPlayed.card_type == Card.cardType.WILD_DRAW_FOUR):
@@ -52,9 +72,7 @@ func TriggerSpecialCards(card : Card):
 		if(GameGlobals.lastCardPlayed.card_type == Card.cardType.DRAW_TWO):
 			for i in range(2):
 				ai_hand.AddCard(deck.Draw())
-				
-				
-		player_hand.RemoveCard(card)
+
 	else:
 		if(GameGlobals.lastCardPlayed.card_type == Card.cardType.WILD_DRAW_FOUR):
 			for i in range(4):
@@ -81,3 +99,6 @@ func EndTurn(change) -> void:
 		PlayerTurn = not PlayerTurn
 		GameGlobals.playerTurn = not GameGlobals.playerTurn
 	ai_player.TurnChanged()
+
+func OnUNOButtonPressed() -> void:
+	unoButtonPressed = true
