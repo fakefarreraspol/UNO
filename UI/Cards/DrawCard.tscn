@@ -1,0 +1,113 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2an1o7ra2gxn"]
+
+[ext_resource type="Script" path="res://Scripts/UI/draw_card_UI.gd" id="1_6hr8j"]
+[ext_resource type="Texture2D" uid="uid://cbmicidhfxdps" path="res://Sprites/UNOCards.png" id="2_nw3ff"]
+
+[sub_resource type="Animation" id="Animation_yi4mk"]
+resource_name = "Deselect"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Container/CardFront:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(37, 8), Vector2(37, 57)]
+}
+
+[sub_resource type="Animation" id="Animation_7vko7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Container/CardFront:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(37, 57)]
+}
+
+[sub_resource type="Animation" id="Animation_mout7"]
+resource_name = "Select"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Container/CardFront:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(37, 57), Vector2(37, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_y8ji3"]
+resource_name = "TakeCard"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Container/CardFront:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(37, 57), Vector2(37, 1000)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fb2o4"]
+_data = {
+"Deselect": SubResource("Animation_yi4mk"),
+"RESET": SubResource("Animation_7vko7"),
+"Select": SubResource("Animation_mout7"),
+"TakeCard": SubResource("Animation_y8ji3")
+}
+
+[node name="DrawCard" type="Control"]
+custom_minimum_size = Vector2(73, 114)
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -57.0
+offset_right = 73.0
+offset_bottom = 57.0
+grow_vertical = 2
+script = ExtResource("1_6hr8j")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Container" type="Container" parent="CanvasLayer"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -59.5
+offset_right = 79.0
+offset_bottom = 59.5
+grow_vertical = 2
+
+[node name="CardFront" type="Sprite2D" parent="CanvasLayer/Container"]
+position = Vector2(37, 57)
+texture = ExtResource("2_nw3ff")
+hframes = 13
+vframes = 5
+frame = 62
+
+[node name="Anim" type="AnimationPlayer" parent="CanvasLayer/Container"]
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_fb2o4")
+}
+
+[connection signal="gui_input" from="CanvasLayer/Container" to="." method="_on_container_gui_input"]
+[connection signal="mouse_entered" from="CanvasLayer/Container" to="." method="_on_container_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Container" to="." method="_on_container_mouse_exited"]
