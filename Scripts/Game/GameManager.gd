@@ -18,6 +18,7 @@ func _ready() -> void:
 	choose_color.color_changed.connect(Callable(ChangeLastColorCard).bind())
 	GameGlobals.last_card_changed.connect(Callable(TriggerSpecialCards).bind())
 	draw_card.card_drawn.connect(Callable(PlayerDrawsCard))
+	ai_player.ai_draw_card.connect(Callable(AIDrawsCard))
 
 func StartGame() -> void:
 	deck.InitializeDeck() #create deck
@@ -61,16 +62,22 @@ func TriggerSpecialCards(card : Card):
 		if(GameGlobals.lastCardPlayed.card_type == Card.cardType.DRAW_TWO):
 			for i in range(2):
 				player_hand.AddCard(deck.Draw())
-				
-				
-	# Finalizar turno
-	EndTurn()
+	#Check skip card
+	if(GameGlobals.lastCardPlayed.card_type != Card.cardType.SKIP):
+		# Finalizar turno
+		EndTurn(true)
+	else: EndTurn(false)
 
 func PlayerDrawsCard() -> void:
 	player_hand.AddCard(deck.Draw())
-	EndTurn()
+	EndTurn(true)
+	
+func AIDrawsCard() -> void:
+	ai_hand.AddCard(deck.Draw())
+	EndTurn(true)
 
-func EndTurn() -> void:
-	PlayerTurn = not PlayerTurn
-	GameGlobals.playerTurn = not GameGlobals.playerTurn
+func EndTurn(change) -> void:
+	if(change):
+		PlayerTurn = not PlayerTurn
+		GameGlobals.playerTurn = not GameGlobals.playerTurn
 	ai_player.TurnChanged()

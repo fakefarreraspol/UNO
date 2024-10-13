@@ -82,6 +82,7 @@ func InitCard(card: Card) -> void:
 
 func _on_mouse_entered() -> void:
 	$Anim.play("Select")
+	$Audio.play()
 	cardHighlighted = true
 
 

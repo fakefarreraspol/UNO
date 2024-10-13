@@ -25,3 +25,7 @@ func ClearAllCards() -> void:
 
 func GetHand() -> Array:
 	return handCards
+
+func GetCard() -> Card:
+	var card = handCards.pop_at(0)
+	return card

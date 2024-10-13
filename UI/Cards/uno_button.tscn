@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcb0hjrld334v"]
+
+[ext_resource type="Texture2D" uid="uid://c225747iijsvn" path="res://Sprites/UNO.png" id="1_t5ycl"]
+
+[node name="UnoButton" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Container" type="Container" parent="CanvasLayer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -206.0
+offset_top = 18.0
+offset_right = -110.0
+offset_bottom = 88.0
+grow_horizontal = 0
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="CardFront" type="Sprite2D" parent="CanvasLayer/Container"]
+position = Vector2(48, 32)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_t5ycl")

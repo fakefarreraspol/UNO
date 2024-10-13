@@ -9,7 +9,7 @@ var lastCardPlayed : Card
 
 func SetLastCard(card : Card) -> void:
 	lastCardPlayed = card
-	print("Card on Board changed!")
+	print("Card on Board changed!" + card.GetCardDescription())
 	emit_signal("last_card_changed", card)
 
 func _CheckCardsCompatibility(card : Card) -> bool:

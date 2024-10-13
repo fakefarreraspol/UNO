@@ -2,19 +2,22 @@ extends Node
 @onready var ai_hand = $AIHand
 
 var AI_CardUI
-var ai_timer: Timer
+signal ai_draw_card()
+
+var cardToPlay = Card
 
 func TurnChanged() -> void:
 	if(!GameGlobals.playerTurn):
-		ai_timer = Timer.new()
-		AI_CardUI.SelectCard()
-		var wait_time = randf_range(1.0, 3.0)
-		ai_timer.wait_time = wait_time
-		# Start the timer
-		ai_timer.start()
-		# Await the timer to finish
-		await ai_timer.timeout
-		AI_CardUI.PlaceCard(ai_hand.handCards[0])
+		if !DecideNextMovement(): return
+		if(len(ai_hand.handCards) > 1):
+			for i in randf_range(1, 3):
+				AI_CardUI.SelectCard()
+				await get_tree().create_timer(randf_range(0.2, 3)).timeout
+		else:
+			AI_CardUI.SelectCard()
+			await get_tree().create_timer(0.5).timeout
+		AI_CardUI.PlaceCard(cardToPlay)
+		ai_hand.RemoveCard(cardToPlay)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,5 +32,13 @@ func OnCardAdded(card: Card) -> void:
 		return
 	AI_CardUI.AddCard(card)
 
-func PlaceCard() -> void:
-	pass
+func DecideNextMovement() -> bool:
+	cardToPlay = null
+	for card in ai_hand.handCards:
+		if(GameGlobals._CheckCardsCompatibility(card)):
+			cardToPlay = card
+			return true
+	if cardToPlay == null: emit_signal("ai_draw_card")
+	
+	
+	return false

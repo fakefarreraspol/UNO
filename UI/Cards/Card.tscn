@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dulcayxu8cqoj"]
+[gd_scene load_steps=8 format=3 uid="uid://dulcayxu8cqoj"]
 
 [ext_resource type="Script" path="res://Scripts/UI/UICard.gd" id="1_n383g"]
 [ext_resource type="Texture2D" uid="uid://cbmicidhfxdps" path="res://Sprites/UNOCards.png" id="1_siv6w"]
+[ext_resource type="AudioStream" uid="uid://d1563ntgunkur" path="res://Audio/sel_card.mp3" id="3_oapib"]
 
 [sub_resource type="Animation" id="Animation_yi4mk"]
 resource_name = "Deselect"
@@ -69,6 +70,10 @@ vframes = 5
 libraries = {
 "": SubResource("AnimationLibrary_fb2o4")
 }
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_oapib")
+volume_db = -30.0
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
