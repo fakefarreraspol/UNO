@@ -35,8 +35,9 @@ func ShuffleDeck() -> void:
 func Draw() -> Card:
 	if cards.size() > 0:
 		return cards.pop_back()
-	print("CardNull")
-	return null
+	print("No more cards, creating another DECK... ")
+	InitializeDeck()
+	return cards.pop_back()
 
 func EmptyDeck() -> void:
 	cards.clear()
